@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 public class Initializer {
 
-	public static void main(String[] args) {
+	 public static void main(String[] args) {
 			new SpringApplicationBuilder()
 				.sources(Initializer.class)
 				.run(args);
