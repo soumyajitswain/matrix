@@ -22,7 +22,9 @@ CREATE TABLE  `USER` (
   `feature3Value` double NOT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `thetha` double NOT NULL,
+  `thetha0` double NOT NULL,
+  `thetha1` double NOT NULL,
+  `thetha2` double NOT NULL,
   PRIMARY KEY (`id`)
 );
 DROP TABLE IF EXISTS `USERSKUMATRIX`;

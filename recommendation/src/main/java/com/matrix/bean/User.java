@@ -13,7 +13,9 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private double thetha;
+	private double thetha0;
+	private double thetha1;
+	private double thetha2;
 	private String feature1Name;
 	private double feature1Value;
 	private String feature2Name;
@@ -42,11 +44,23 @@ public class User {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-	public double getThetha() {
-		return thetha;
+	public double getThetha0() {
+		return thetha0;
 	}
-	public void setThetha(double thetha) {
-		this.thetha = thetha;
+	public void setThetha0(double thetha0) {
+		this.thetha0 = thetha0;
+	}
+	public double getThetha1() {
+		return thetha1;
+	}
+	public void setThetha1(double thetha1) {
+		this.thetha1 = thetha1;
+	}
+	public double getThetha2() {
+		return thetha2;
+	}
+	public void setThetha2(double thetha2) {
+		this.thetha2 = thetha2;
 	}
 	public String getFeature1Name() {
 		return feature1Name;
