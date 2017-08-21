@@ -27,28 +27,31 @@ public abstract class AbstractGradientDesent {
 	@Autowired
 	private static ApplicationContext context;
 	
-	public abstract boolean gradientDesent();
+	public abstract double gradientDesent(List<UserSkuMatrix> ratings,Parameter p, int fator);
 	
 	public Parameter calculateWeight(List<UserSkuMatrix> ratings, User user) {
-		Parameter p = new Parameter();
-		double theta1=0.1,theta2=0.1,theta3=0.1;
-		double tempTheta1=0,tempTheta2=0,tempTheta3=0;
+		
+		double theta0=0.1,theta1=0.1,theta2=0.1;
+		double tempTheta0=0,tempTheta1=0,tempTheta2=0;
 		for(int i = 0;i<iteration;i++) {
-			if(verifyConvergence(theta1, tempTheta1) 
-					&& verifyConvergence(theta2, tempTheta2)
-					&& verifyConvergence(theta3, tempTheta3)) {
+			if(verifyConvergence(theta0, tempTheta0) 
+					&& verifyConvergence(theta1, tempTheta1)
+					&& verifyConvergence(theta2, tempTheta2)) {
 				break;
 			}
 
+			tempTheta0 = theta0;
 			tempTheta1 = theta1;
 			tempTheta2 = theta2;
-			tempTheta3 = theta3;
 
-//			theta1 = theta1 - normalGradientDesent(ratings, theta1, theta2, theta3, 1);
-//			theta2 = theta2 - normalGradientDesent(ratings, theta1, theta2, theta3, 2);
-//			theta3 = theta3 - normalGradientDesent(ratings, theta1, theta2, theta3, 3);
+			Parameter p = new Parameter(theta0, theta1, theta2);
+			
+			theta0 = theta0 - gradientDesent(ratings, p,1);
+			theta1 = theta1 - gradientDesent(ratings, p,2);
+			theta2 = theta2 - gradientDesent(ratings, p,3);
+			
 		}
-		
+		Parameter p = new Parameter(theta0, theta1, theta2);
 		return p;	
 	}
 
@@ -110,6 +113,38 @@ public abstract class AbstractGradientDesent {
        public double theta0;
        public double theta1;
        public double theta2;
+       
+       public Parameter() {
+    	   
+       }
+       
+       public Parameter(double theta0, double theta1, double theta2) {
+    	   this.theta0 = theta0;
+    	   this.theta1 = theta1;
+    	   this.theta2 = theta2;
+       }
     }
-	
+	public class Hypothesis {
+		private double theta0;
+		private double theta1;
+		private double theta2;
+		private double x;
+		private double x1;
+		
+		public Hypothesis(Parameter p, double x, double x1) {
+			this.theta0 = p.theta0;
+			this.theta1 = p.theta1;
+			this.theta2 = p.theta2;
+			this.x = x;
+			this.x1 = x1;
+		}
+		
+		public double hypothesis1() {
+			return theta0 + (theta1 * x)+ (theta2 * x1);
+		}
+		public double hypothesis2() {
+			return theta0 + (theta1 * x)+ (theta2 * x1 * x1);
+		}
+
+	}
 }
