@@ -11,9 +11,9 @@ import org.springframework.context.ApplicationContext;
 import com.matrix.bean.User;
 import com.matrix.bean.UserSkuMatrix;
 
-public abstract class AbstractGradientDesent {
+public abstract class AbstractGradientDescent {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(AbstractGradientDesent.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AbstractGradientDescent.class);
 	
 	private static final double GLOBAL_MINIMUM = Double.MIN_VALUE;
 	
@@ -63,9 +63,9 @@ public abstract class AbstractGradientDesent {
 		return p;	
 	}
 
-	public static AbstractGradientDesent factory(AbstractGradientDesent g) {
-		AbstractGradientDesent childClass = 
-				(AbstractGradientDesent) context.getBean(g.getMethod());
+	public static AbstractGradientDescent factory(AbstractGradientDescent g) {
+		AbstractGradientDescent childClass = 
+				(AbstractGradientDescent) context.getBean(g.getMethod());
        	return childClass;
 	}
 	
@@ -97,7 +97,7 @@ public abstract class AbstractGradientDesent {
 		return iteration;
 	}
 
-	public AbstractGradientDesent iteration(double iteration) {
+	public AbstractGradientDescent iteration(double iteration) {
 		this.iteration = iteration;
 		return this;
 	}
@@ -106,7 +106,7 @@ public abstract class AbstractGradientDesent {
 		return method;
 	}
 
-	public AbstractGradientDesent method(String method) {
+	public AbstractGradientDescent method(String method) {
 		this.method = method;
 		return this;
 	}
@@ -115,7 +115,7 @@ public abstract class AbstractGradientDesent {
 		return learningAlpha;
 	}
 
-	public AbstractGradientDesent learningAlpha(double learningAlpha) {
+	public AbstractGradientDescent learningAlpha(double learningAlpha) {
 		this.learningAlpha = learningAlpha;
 		return this;
 	}
@@ -124,7 +124,7 @@ public abstract class AbstractGradientDesent {
 		return lamda;
 	}
 
-	public AbstractGradientDesent lamda(double lamda) {
+	public AbstractGradientDescent lamda(double lamda) {
 		this.lamda = lamda;
 		return this;
 	}

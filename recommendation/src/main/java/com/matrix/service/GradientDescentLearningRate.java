@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.matrix.bean.UserSkuMatrix;
 
 @Service
-public class GradientDesentLearningRate extends AbstractGradientDesent {
+public class GradientDescentLearningRate extends AbstractGradientDescent {
 
 	@Override
 	public double gradientDesent(List<UserSkuMatrix> ratings, Parameter p, int factor) {

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.matrix.bean.UserSkuMatrix;
 
 @Service
-public class SimpleGrandientDesent extends AbstractGradientDesent {
+public class SimpleGrandientDescent extends AbstractGradientDescent {
 	@SuppressWarnings("unused")
-	private static final Logger LOG = LoggerFactory.getLogger(SimpleGrandientDesent.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SimpleGrandientDescent.class);
 	@Override
 	public double gradientDesent(List<UserSkuMatrix> ratings, Parameter p, int factor) {
 		double m = ratings.size();

@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.matrix.bean.User;
 import com.matrix.bean.UserSkuMatrix;
-import com.matrix.service.AbstractGradientDesent.Parameter;
 
 @Service
-public class GradientDesentLamda extends AbstractGradientDesent {
+public class GradientDescentLamda extends AbstractGradientDescent {
     
-	private static final Logger LOG = LoggerFactory.getLogger(GradientDesentLamda.class);
+	private static final Logger LOG = LoggerFactory.getLogger(GradientDescentLamda.class);
     
 	@Override
 	public double gradientDesent(List<UserSkuMatrix> ratings, Parameter p, int factor) {

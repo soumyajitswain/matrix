@@ -24,7 +24,7 @@ public class TrainModel {
 	
 	@Autowired
 	@Qualifier("simpleGrandientDesent")
-	private AbstractGradientDesent gradientDesent;
+	private AbstractGradientDescent gradientDesent;
 	
 	@Autowired
 	private UserRepository userRepository;
