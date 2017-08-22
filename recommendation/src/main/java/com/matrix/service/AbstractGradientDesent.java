@@ -3,14 +3,18 @@ package com.matrix.service;
 import java.util.List;
 import java.util.Map;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import com.matrix.bean.User;
 import com.matrix.bean.UserSkuMatrix;
+import com.matrix.service.AbstractGradientDesent.Parameter;
 
 public abstract class AbstractGradientDesent {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(AbstractGradientDesent.class);
 	
 	private static final double GLOBAL_MINIMUM = Double.MIN_VALUE;
 	
@@ -47,11 +51,16 @@ public abstract class AbstractGradientDesent {
 			Parameter p = new Parameter(theta0, theta1, theta2);
 			
 			theta0 = theta0 - gradientDesent(ratings, p,1);
+			p = new Parameter(theta0, theta1, theta2);
 			theta1 = theta1 - gradientDesent(ratings, p,2);
+			p = new Parameter(theta0, theta1, theta2);
 			theta2 = theta2 - gradientDesent(ratings, p,3);
+			p = new Parameter(theta0, theta1, theta2);
 			
 		}
 		Parameter p = new Parameter(theta0, theta1, theta2);
+		LOG.info("Parameter vector for user {} theta0 {}, theta1 {}, theta2 {}", 
+				user.getId(),theta0, theta1, theta2);
 		return p;	
 	}
 
@@ -61,8 +70,8 @@ public abstract class AbstractGradientDesent {
        	return childClass;
 	}
 	
-	private boolean verifyConvergence(double theta, double tempTheta) {
-		return (theta - tempTheta) > GLOBAL_MINIMUM;
+	protected boolean verifyConvergence(double theta, double tempTheta) {
+		return (theta - tempTheta) < GLOBAL_MINIMUM;
 	}
 	
 	public double getIteration() {

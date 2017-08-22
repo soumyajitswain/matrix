@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.matrix.bean.User;
@@ -20,6 +21,11 @@ public class TrainModel {
     private static final Logger LOG = LoggerFactory.getLogger(TrainModel.class);
     
 	private static final double GLOBAL_MINIMUM = Double.MIN_VALUE;
+	
+	@Autowired
+	@Qualifier("simpleGrandientDesent")
+	private AbstractGradientDesent gradientDesent;
+	
 	@Autowired
 	private UserRepository userRepository;
 
@@ -37,6 +43,12 @@ public class TrainModel {
 				skuMatrixRepository.findByUserId(user.getId()).spliterator(), false)
 				.collect(Collectors.toList());
 		calculateWeight(ratings, user);
+		
+		gradientDesent.method("simpleGrandientDesent")
+				.learningAlpha(0.1)
+				.lamda(0.1)
+				.iteration(10000);
+		gradientDesent.calculateWeight(ratings, user);
 	}
 	private void calculateWeight(List<UserSkuMatrix> ratings, User user) {
 		double theta1=0.1,theta2=0.1,theta3=0.1;
@@ -83,7 +95,7 @@ public class TrainModel {
 			} else if( a==3) {
 				s = s*x1;
 			}
-			LOG.info("X ="+x+" Y="+y+" S="+s+" feature="+a);
+			//LOG.info("X ="+x+" Y="+y+" S="+s+" feature="+a);
 			sum = sum + s;
 		}
 		return sum;
