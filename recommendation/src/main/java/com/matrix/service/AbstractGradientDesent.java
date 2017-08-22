@@ -10,7 +10,6 @@ import org.springframework.context.ApplicationContext;
 
 import com.matrix.bean.User;
 import com.matrix.bean.UserSkuMatrix;
-import com.matrix.service.AbstractGradientDesent.Parameter;
 
 public abstract class AbstractGradientDesent {
 	
@@ -20,7 +19,7 @@ public abstract class AbstractGradientDesent {
 	
 	private String method;
 	
-	private double learningAlpha;
+	private double learningAlpha = 0.1;
 	
 	private double lamda;
 	
@@ -74,6 +73,26 @@ public abstract class AbstractGradientDesent {
 		return (theta - tempTheta) < GLOBAL_MINIMUM;
 	}
 	
+	protected double partialDerivative(List<UserSkuMatrix> ratings, 
+			Parameter p, int factor){
+		double sum=0.0;
+		for(UserSkuMatrix d:ratings) {
+			double x = d.getSku().getFeature1Value(), 
+					y = d.getRank(), x1=d.getSku().getFeature2Value();
+
+			Hypothesis h = new Hypothesis(p, x, x1);
+			double s = (h.hypothesis2()-y);
+			if(factor == 2) {
+				s = s*x;
+			} else if( factor==3) {
+				s = s*x1;
+			}
+			//LOG.info("X ={} Y={} S={} feature={}",x,y,s,factor);
+			sum = sum + s;
+		}
+		return sum;
+	}
+
 	public double getIteration() {
 		return iteration;
 	}
