@@ -36,10 +36,13 @@ public abstract class AbstractGradientDescent {
 		
 		double theta0=0.1,theta1=0.1,theta2=0.1;
 		double tempTheta0=0,tempTheta1=0,tempTheta2=0;
+		
 		for(int i = 0;i<iteration;i++) {
+		
 			if(verifyConvergence(theta0, tempTheta0) 
 					&& verifyConvergence(theta1, tempTheta1)
 					&& verifyConvergence(theta2, tempTheta2)) {
+			
 				break;
 			}
 
@@ -57,83 +60,111 @@ public abstract class AbstractGradientDescent {
 			p = new Parameter(theta0, theta1, theta2);
 			
 		}
+		
 		Parameter p = new Parameter(theta0, theta1, theta2);
+		
 		LOG.info("Parameter vector for user {} theta0 {}, theta1 {}, theta2 {}", 
 				user.getId(),theta0, theta1, theta2);
+		
 		return p;	
 	}
 
 	public static AbstractGradientDescent factory(AbstractGradientDescent g) {
+		
 		AbstractGradientDescent childClass = 
 				(AbstractGradientDescent) context.getBean(g.getMethod());
-       	return childClass;
+       	
+		return childClass;
 	}
 	
 	protected boolean verifyConvergence(double theta, double tempTheta) {
+		
 		return (theta - tempTheta) < GLOBAL_MINIMUM;
 	}
 	
 	protected double partialDerivative(List<UserSkuMatrix> ratings, 
 			Parameter p, int factor){
+		
 		double sum=0.0;
+		
 		for(UserSkuMatrix d:ratings) {
+			
 			double x = d.getSku().getFeature1Value(), 
 					y = d.getRank(), x1=d.getSku().getFeature2Value();
 
 			Hypothesis h = new Hypothesis(p, x, x1);
+		
 			double s = (h.hypothesis2()-y);
+			
 			if(factor == 2) {
 				s = s*x;
 			} else if( factor==3) {
 				s = s*x1;
 			}
-			//LOG.info("X ={} Y={} S={} feature={}",x,y,s,factor);
+		
 			sum = sum + s;
 		}
+		
 		return sum;
 	}
 
 	public double getIteration() {
+	
 		return iteration;
+	
 	}
 
 	public AbstractGradientDescent iteration(double iteration) {
+		
 		this.iteration = iteration;
+		
 		return this;
+		
 	}
 
 	public String getMethod() {
+		
 		return method;
 	}
 
 	public AbstractGradientDescent method(String method) {
+		
 		this.method = method;
+		
 		return this;
 	}
 
 	public double getLearningAlpha() {
+		
 		return learningAlpha;
 	}
 
 	public AbstractGradientDescent learningAlpha(double learningAlpha) {
+		
 		this.learningAlpha = learningAlpha;
+		
 		return this;
 	}
 
 	public double getLamda() {
+		
 		return lamda;
 	}
 
 	public AbstractGradientDescent lamda(double lamda) {
+		
 		this.lamda = lamda;
+		
 		return this;
 	}
 
 	public Map<String, Double> getPrevParameterMap() {
+		
 		return prevParameterMap;
 	}
 
 	public void setPrevParameterMap(Map<String, Double> prevParameterMap) {
+		
 		this.prevParameterMap = prevParameterMap;
 	} 
 	
@@ -141,19 +172,25 @@ public abstract class AbstractGradientDescent {
        public double theta0;
        public double theta1;
        public double theta2;
+       public boolean converged;
+       public boolean used = false;
        
        public Parameter() {
     	   
        }
        
        public Parameter(double theta0, double theta1, double theta2) {
+    	
     	   this.theta0 = theta0;
     	   this.theta1 = theta1;
     	   this.theta2 = theta2;
+       
        }
     }
-	public class Hypothesis {
-		private double theta0;
+	
+    public class Hypothesis {
+	
+    	private double theta0;
 		private double theta1;
 		private double theta2;
 		private double x;
