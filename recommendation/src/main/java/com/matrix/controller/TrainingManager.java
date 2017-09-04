@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.matrix.service.TrainModel;
+import com.matrix.service.ml.recommendation.TrainModel;
 
 @RestController
 public class TrainingManager {

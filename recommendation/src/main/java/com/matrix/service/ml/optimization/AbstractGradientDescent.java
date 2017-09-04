@@ -1,4 +1,4 @@
-package com.matrix.service;
+package com.matrix.service.ml.optimization;
 
 import java.util.List;
 import java.util.Map;

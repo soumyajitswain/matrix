@@ -1,4 +1,4 @@
-package com.matrix.service;
+package com.matrix.service.ml.recommendation;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +14,7 @@ import com.matrix.bean.User;
 import com.matrix.bean.UserSkuMatrix;
 import com.matrix.repository.UserRepository;
 import com.matrix.repository.UserSkuMatrixRepository;
+import com.matrix.service.ml.optimization.AbstractGradientDescent;
 
 @Service
 public class TrainModel {
