@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.matrix.service.ml.math.distance.AbstractDistance;
+import com.matrix.service.ml.math.distance.EuclideanDistance;
+
+import ch.qos.logback.core.layout.EchoLayout;
+
 public class Point {
 
 	private double x = 0;
@@ -42,7 +47,9 @@ public class Point {
 
 	//Calculates the distance between two points.
 	protected static double distance(Point p, Point centroid) {
-		return Math.sqrt(Math.pow((centroid.getY() - p.getY()), 2) + Math.pow((centroid.getX() - p.getX()), 2));
+		 AbstractDistance d = new EuclideanDistance();
+		//return Math.sqrt(Math.pow((centroid.getY() - p.getY()), 2) + Math.pow((centroid.getX() - p.getX()), 2));
+		 return d.distance(p.getArrayList(), centroid.getArrayList());
 	}
 
 	//Creates random point
@@ -60,7 +67,13 @@ public class Point {
 		}
 		return points;
 	}
-
+    public ArrayList<Double> getArrayList() {
+    	ArrayList<Double> a = new ArrayList<Double>();
+    	a.add(x);
+    	a.add(y);
+    	
+    	return a;
+    }
 	public String toString() {
 		return "("+x+","+y+")";
 	}
