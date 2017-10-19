@@ -18,7 +18,7 @@ public class ImagePixelConverter {
 	private static final Logger logger = 
 			LoggerFactory.getLogger(ImagePixelConverter.class); 
 
-	private BufferedImage image;
+	protected BufferedImage image;
 
 	@Before
 	public void init() throws IOException {
@@ -42,7 +42,7 @@ public class ImagePixelConverter {
 		logger.debug("Matrix " +Arrays.deepToString(convertTo2DWithoutUsingGetRGB(image)));
 	}
 	
-	private static int[][] convertTo2DWithoutUsingGetRGB(BufferedImage image) {
+	protected static int[][] convertTo2DWithoutUsingGetRGB(BufferedImage image) {
 
 		  final byte[] pixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
 		  final int width = image.getWidth();

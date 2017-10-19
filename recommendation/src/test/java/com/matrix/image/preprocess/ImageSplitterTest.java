@@ -21,7 +21,7 @@ public class ImageSplitterTest {
 	private static final Logger logger = 
 			LoggerFactory.getLogger(ImageSplitterTest.class); 
 	
-	private BufferedImage image;
+	protected BufferedImage image;
 	
 	private BufferedImage[] subimages;
 	
