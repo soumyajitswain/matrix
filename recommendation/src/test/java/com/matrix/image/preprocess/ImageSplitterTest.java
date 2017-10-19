@@ -50,6 +50,7 @@ public class ImageSplitterTest {
 			String name = UUID.randomUUID().toString()+".png";
 			Helper.saveImage(bi, name);
 		}
+		logger.debug("Images splitting completed...");
 	}
 	
 	public static class Helper {
