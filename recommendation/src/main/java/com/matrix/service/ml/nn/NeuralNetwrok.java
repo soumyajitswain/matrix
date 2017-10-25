@@ -22,7 +22,7 @@ public class NeuralNetwrok {
     	return this;
     }
     
-    public NeuralNetwrok addLayer(Layer layer) {
+    public NeuralNetwrok addLayer(LayerBuilder layer) {
     	return this;
     }
 	public void train() {
