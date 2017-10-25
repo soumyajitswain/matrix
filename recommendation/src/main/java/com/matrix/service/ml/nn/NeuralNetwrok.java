@@ -25,9 +25,14 @@ public class NeuralNetwrok {
     public NeuralNetwrok addLayer(LayerBuilder layer) {
     	return this;
     }
+    
 	public void train() {
+		
+		LayerBuilder l1 = new Layer("layer1", "simple");
+		LayerBuilder l2 = new Layer("layer2", "gaussian");
+		
 		for(int i=0; i<iteration; i++) {
-	       		
+	              		
 		}
 	}
 	

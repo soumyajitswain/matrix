@@ -15,6 +15,7 @@ public class Layer implements LayerBuilder {
 	     this.activationType = activationType;
 	}
 
+	@Override
 	public Layer input(double[][] input) {
 		this.input = input;
 		return this;
