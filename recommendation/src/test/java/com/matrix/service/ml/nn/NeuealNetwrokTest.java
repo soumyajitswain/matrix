@@ -9,7 +9,7 @@ public class NeuealNetwrokTest {
 		NeuralNetwrok n = new NeuralNetwrok();
 		n.addIteration(10)
 		 .addSeed(1)
-		 .addLayer(new Layer1("layer","input"));
+		 .addLayer(new Layer("layer","input"));
 	}
 
 }

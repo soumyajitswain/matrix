@@ -12,7 +12,7 @@ import org.apache.commons.math3.linear.RealMatrix;
  */
 public class MatrixMathUtil {
 
-    public RealMatrix multiply(final RealMatrix m)
+    public static RealMatrix multiply(final RealMatrix m)
         throws DimensionMismatchException {
 
         final int nRows = m.getRowDimension();
