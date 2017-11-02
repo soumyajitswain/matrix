@@ -6,7 +6,7 @@ public class NeuralNetwrok {
 	
     private int iteration = 1;
     
-    private int[][] input;
+    private double[][] input;
     
     public NeuralNetwrok() {
 		
@@ -32,7 +32,7 @@ public class NeuralNetwrok {
 		LayerBuilder l2 = new Layer("layer2", "gaussian");
 		
 		for(int i=0; i<iteration; i++) {
-	              		
+			l1.input(input);    		
 		}
 	}
 	

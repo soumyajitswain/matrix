@@ -1,5 +1,9 @@
 package com.matrix.service.ml.nn;
 
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
+
 public class Layer implements LayerBuilder {
 	
 	private String layerName;
@@ -29,5 +33,11 @@ public class Layer implements LayerBuilder {
 	public double[][] output() {
 		double[][] output = new double[1][1];
 		return output;
+	}
+	
+	public double[][] dot(double[][] wt) {
+		RealMatrix  i =  MatrixUtils.createRealMatrix(this.input);
+		RealMatrix  w =  MatrixUtils.createRealMatrix(wt);
+		return i.transpose().multiply(w).getData();
 	}
 } 
