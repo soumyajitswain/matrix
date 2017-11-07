@@ -1,10 +1,10 @@
 package com.matrix.service.ml.nn;
 
+import java.util.Random;
+
 import com.matrix.service.ml.math.matrix.MatrixMathUtil;
 
 public class NeuralNetwrok {
-	
-    private double seed = 1.0;	
 	
     private int iteration = 1;
     
@@ -19,7 +19,6 @@ public class NeuralNetwrok {
 	}
 	
     public NeuralNetwrok addSeed(double seed) {
-    	this.seed = seed;
     	return this;
     }
     
@@ -34,6 +33,19 @@ public class NeuralNetwrok {
     
     public NeuralNetwrok expected(double[][] expected) {
     	this.expected = expected;
+    	return this;
+    }
+    
+    public NeuralNetwrok weight(long seed) {
+    	Random r = new Random(seed);
+    	
+    	double[][] tempWeight = new double[input.length][input[0].length];
+    	for(int i = 0;i < tempWeight.length ; i ++) {
+    		for(int j = 0; j < tempWeight[i].length ; i++) {
+    			tempWeight[i][j] = r.nextDouble() * 10;
+    		}
+    	}
+    	
     	return this;
     }
     
@@ -67,7 +79,7 @@ public class NeuralNetwrok {
 	
 	public double[][] delta(double[][] e, double[][] s) {
 		
-		return null;
+		return MatrixMathUtil.multiply(e, s);
 	}
 	
 	public double[][] adjustWeight(double[][] w) {

@@ -52,4 +52,9 @@ public class MatrixMathUtil {
         return sm.subtract(tm).getData(); 		
 	}
 
+	public static double[][] multiply(double[][] s, double[][] t) {
+		RealMatrix sm = MatrixUtils.createRealMatrix(s);
+		RealMatrix tm = MatrixUtils.createRealMatrix(t);
+        return sm.multiply(tm).getData(); 		
+	}
 }
