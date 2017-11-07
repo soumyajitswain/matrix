@@ -6,5 +6,12 @@ public interface LayerBuilder {
 		return this;
 	}
 
+	public default LayerBuilder activationType(String activatinType) {
+		return this;
+	}
+	
+	public double[][] output();
+	
+	public double[][] dot(double[][] wt);
 	
 }

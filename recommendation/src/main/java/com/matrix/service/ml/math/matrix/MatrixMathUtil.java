@@ -12,23 +12,44 @@ import org.apache.commons.math3.linear.RealMatrix;
  */
 public class MatrixMathUtil {
 
-    public static RealMatrix multiply(final RealMatrix m)
+    public static double[][] multiply(final double[][] m, boolean y)
         throws DimensionMismatchException {
-
-        final int nRows = m.getRowDimension();
-        final int nCols = m.getColumnDimension();
+        
+    	RealMatrix sm = MatrixUtils.createRealMatrix(m); 
+        
+        final int nRows = sm.getRowDimension();
+        final int nCols = sm.getColumnDimension();
         final RealMatrix out = MatrixUtils.createRealMatrix(nRows, nCols);
         
         for (int row = 0; row < nRows; ++row) {
             for (int col = 0; col < nCols; ++col) {
-                double exp = Math.exp(m.getEntry(row, col));
-                out.setEntry(row, col, exp);
+            	
+            	double exp = 0;
+            	
+            	if(y) {
+            		exp = sm.getEntry(row, col) * (1 - sm.getEntry(row, col)); 
+            	} else {
+                    exp = Math.exp(sm.getEntry(row, col));
+            	}
+                
+            	out.setEntry(row, col, exp);
             }
         }
 
-        return out;
+        return out.getData();
     }
 	
+	public static double[][] add(final double[][] s,final double[][] t) {
+		RealMatrix sm = MatrixUtils.createRealMatrix(s);
+		RealMatrix tm = MatrixUtils.createRealMatrix(t);
+		RealMatrix o = sm.add(tm);
+		return o.getData();
+	}
 	
+	public static double[][] subtract(final double[][] s, final double[][] t) {
+		RealMatrix sm = MatrixUtils.createRealMatrix(s);
+		RealMatrix tm = MatrixUtils.createRealMatrix(t);
+        return sm.subtract(tm).getData(); 		
+	}
 
 }
