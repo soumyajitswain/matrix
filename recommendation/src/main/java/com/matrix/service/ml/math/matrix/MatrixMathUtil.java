@@ -12,7 +12,7 @@ import org.apache.commons.math3.linear.RealMatrix;
  */
 public class MatrixMathUtil {
 
-    public static double[][] multiply(final double[][] m, boolean y)
+    public static double[][] nonlin(final double[][] m, boolean y)
         throws DimensionMismatchException {
         
     	RealMatrix sm = MatrixUtils.createRealMatrix(m); 

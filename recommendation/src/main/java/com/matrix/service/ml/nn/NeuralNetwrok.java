@@ -59,13 +59,13 @@ public class NeuralNetwrok {
 			l1.activationType("simple").input(input);
 			
 			//find the dot between the products
-			l2.activationType("signum").input(l1.output());
+			l2.activationType("signum").weight(weight).input(l1.output());
 			
 			//find the error
 			double[][] e = error(l2.output());
 			
 			//find the delta
-			double[][] delta = delta(e, MatrixMathUtil.multiply(l2.output(), true) ); 
+			double[][] delta = delta(e, MatrixMathUtil.nonlin(l2.output(), true) ); 
 			
 			//readjust the weight
 		    weight = adjustWeight(l1.dot(delta)); 	

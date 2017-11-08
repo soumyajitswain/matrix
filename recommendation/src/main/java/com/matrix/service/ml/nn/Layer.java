@@ -44,11 +44,11 @@ public class Layer implements LayerBuilder {
 			o = input;
 			break;
 		case "signum" :
-			o = MatrixMathUtil.multiply(input, false);
+			o = MatrixMathUtil.nonlin(dot(weight), false);
 			break;
 		}
 		
-		return input;
+		return o;
 
 	}
 
@@ -57,4 +57,5 @@ public class Layer implements LayerBuilder {
 		RealMatrix  w =  MatrixUtils.createRealMatrix(wt);
 		return i.transpose().multiply(w).getData();
 	}
+	
 } 

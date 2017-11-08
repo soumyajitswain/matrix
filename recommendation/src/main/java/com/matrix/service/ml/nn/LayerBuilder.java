@@ -14,4 +14,6 @@ public interface LayerBuilder {
 	
 	public double[][] dot(double[][] wt);
 	
+	public Layer weight(double[][] weight);
+	
 }
